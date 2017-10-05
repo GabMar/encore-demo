@@ -1,0 +1,37 @@
+---
+ip: "192.168.10.10"
+memory: 2048
+cpus: 1
+hostname: encore-demo
+name: encore-demo
+provider: virtualbox
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
+
+folders:
+    - map: "/home/gabriele/Documents/Develop/symfonyday/encore_demo"
+      to: "/home/vagrant/encore-demo"
+
+sites:
+    - map: homestead.app
+      to: "/home/vagrant/encore-demo/web"
+      type: symfony
+
+databases:
+    - homestead
+
+# blackfire:
+#     - id: foo
+#       token: bar
+#       client-id: foo
+#       client-token: bar
+
+# ports:
+#     - send: 50000
+#       to: 5000
+#     - send: 7777
+#       to: 777
+#       protocol: udp
