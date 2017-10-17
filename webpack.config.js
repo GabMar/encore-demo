@@ -23,6 +23,9 @@ Encore
     .autoProvidejQuery()
 
     .enableSourceMaps(!Encore.isProduction())
+    
+    // enable the Vue.js loader
+    .enableVueLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();
