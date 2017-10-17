@@ -19,3 +19,7 @@
 \.vagrant/
 
 nbproject/
+
+node_modules/
+
+web/build/

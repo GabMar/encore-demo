@@ -1,0 +1,5 @@
+app.index:
+    path: /
+    defaults:
+        _controller: AppBundle:Default:index
+    methods: [GET]
