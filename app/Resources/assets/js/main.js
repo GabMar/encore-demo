@@ -1,3 +1,3 @@
-var $ = require('jquery');
+'use strict';
 
 require('bootstrap-sass');

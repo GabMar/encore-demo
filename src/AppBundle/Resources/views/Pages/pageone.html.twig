@@ -3,5 +3,13 @@
 {% block page_content %}
     <h2>Page One</h2>
     <div class="row">
+        <div class="col1 page-one-main">
+            <first-component></first-component>
+        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('build/bundles/AppBundle/Libraries/Pages/page-one.main.js') }}"></script>
 {% endblock %}

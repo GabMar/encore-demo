@@ -1,3 +1,5 @@
+var path   = require('path');
+var glob   = require('glob');
 var Encore = require('@symfony/webpack-encore');
 
 Encore
@@ -26,6 +28,36 @@ Encore
     
     // enable the Vue.js loader
     .enableVueLoader()
+
+    .enableTypeScriptLoader()
+
+    .addLoader({
+        test: /\.(vue|js)$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        use: {
+            loader: 'eslint-loader',
+            options: {
+                fix: true,
+            },
+        }
+    })
 ;
+
+function buildEntry() {
+    var files = glob.sync('./src/AppBundle/Resources/assets/js/{,**}/*.main.js');
+
+    for (var i = 0; i < files.length; i++) {
+        var entry = files[i];
+        
+        var components = entry.split('/');
+        var name = components[2] + '/' + components[6] + '/' + components[7] + '/' + components.slice(8, components.length - 1).join('/');
+        var bundleName = name.replace(/\/$/, '');
+    
+        Encore.addEntry('bundles/' + bundleName + '/' + path.basename(entry, path.extname(entry)), entry);
+    }
+}
+
+buildEntry();
 
 module.exports = Encore.getWebpackConfig();
